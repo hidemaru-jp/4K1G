@@ -3,7 +3,13 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = Post.new
-    @post1 = Post.find(8)
+  end
+
+  def show
+    @post = Post.find(params[:id])
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments
+
   end
 
   def create
