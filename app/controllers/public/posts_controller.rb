@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
     @post = Post.new
+    @post1 = Post.find(8)
   end
 
   def create
@@ -21,7 +22,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:content)
+    params.require(:post).permit(:content,:image)
   end
 
 end
