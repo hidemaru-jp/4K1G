@@ -16,4 +16,11 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get '/about' => "public/homes#about", as: "about"
+
+  scope module: :public do
+    resources :users
+    resources :posts
+  end
+
+
 end
