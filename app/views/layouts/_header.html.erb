@@ -19,6 +19,12 @@
         <% if user_signed_in? %>
 
           <li>
+            <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
+              <div class="nav-btn">マイページ</div>
+            <% end %>
+          </li>
+
+          <li>
             <%= link_to posts_path,class: 'nav-link text-light' do %>
               <div class="nav-btn">投稿</div>
             <% end %>

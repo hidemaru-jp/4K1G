@@ -1,0 +1,22 @@
+<div class="container">
+  ユーザー詳細
+
+  <table class='table'>
+
+    <tr>
+    <%= image_tag @user.get_profile_image(100,100) %>
+    </tr>
+
+    <tr>
+  	  <th>name</th>
+  	  <th><%= @user.name %></th>
+    </tr>
+    <tr>
+  	  <th>introduction</th>
+  	  <th><%= @user.introduction %></th>
+    </tr>
+    <tr>
+      <th><%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-success" %></th>
+    </tr>
+  </table>
+</div>
