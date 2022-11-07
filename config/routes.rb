@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :users
-    resources :posts
+    resources :posts do
+      resources :post_comments
+    end
   end
 
 
