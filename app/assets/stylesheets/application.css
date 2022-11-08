@@ -20,7 +20,7 @@
  }
 
 header{
-   background-color: #FAEBD7
+   background-color: #FF773E
  }
 
 .container{
@@ -29,7 +29,7 @@ header{
 
 footer{
    height:100px;
-   background-color: #FFA500
+   background-color:#FFDBC9
 }
 
 .logo{
@@ -40,15 +40,15 @@ footer{
    width:120px;
    height:50px;
    border-style:solid;
-   border-color: #FFA500;
+   border-color: #FFFFFF;
    border-radius:10%;
    display: flex;
    justify-content:center;
    align-items:center;
-   color:#FFA500;
+   color:#FFFFFF;
 }
 
 .nav-btn:hover{
-   background-color:#ffffff;
+   background-color:#FF9872;
 }
 
