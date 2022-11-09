@@ -1,8 +1,9 @@
 class Public::PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per(10).reverse_order
     @post = Post.new
+    @posts = @posts.where('content LIKE ?', "%#{params[:search]}%") if params[:search].present?
   end
 
   def show

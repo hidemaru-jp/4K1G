@@ -23,13 +23,16 @@
               <div class="nav-btn">マイページ</div>
             <% end %>
           </li>
-
           <li>
             <%= link_to posts_path,class: 'nav-link text-light' do %>
               <div class="nav-btn">投稿</div>
             <% end %>
           </li>
-
+          <li>
+            <%= link_to users_path,class: 'nav-link text-light' do %>
+              <div class="nav-btn">ユーザー</div>
+            <% end %>
+          </li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
               <div class="nav-btn">ログアウト</div>
