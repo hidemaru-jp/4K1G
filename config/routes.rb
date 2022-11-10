@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/about' => "public/homes#about", as: "about"
 
   scope module: :public do
+     post 'guests/guest_sign_in', to: 'guests#new_guest'
     resources :users do
       member do
         get :follows, :followers

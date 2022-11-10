@@ -35,7 +35,11 @@
    </div>
     </tr>
     <tr>
-      <th><%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-success" %></th>
+      <th>
+        <% if current_user == @user && current_user.name != 'guest' %>
+          <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-success" %>
+        <% end %>
+      <th>
     </tr>
   </table>
 </div>
