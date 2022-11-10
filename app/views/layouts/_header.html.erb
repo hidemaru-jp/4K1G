@@ -34,6 +34,11 @@
             <% end %>
           </li>
           <li>
+            <%= link_to notifications_path,class: 'nav-link text-light' do %>
+              <div class="nav-btn">通知</div>
+            <% end %>
+          </li>
+          <li>
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
               <div class="nav-btn">ログアウト</div>
             <% end %>

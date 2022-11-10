@@ -1,0 +1,28 @@
+<div>
+  <% notifications=@notifications.where.not(visitor_id: current_user.id) %>
+  <h4 class="sub-title">通知</h4>
+  <% if notifications.exists? %>
+    <div class="users-index">
+      <% notifications.each do |notification| %>
+
+        <% visitor=notification.visitor %>
+        <%= link_to user_path(notification.visitor) do %>
+          <%=  image_tag notification.visitor.profile_image, class:"user-thumb", style:"width: 60px;"%>
+          <%= visitor.name %>
+        <% end %>
+
+        <% case notification.action %>
+        <% when 'follow' then %>
+          <%= "あなたをフォローしました" %>
+        <% when 'favorite' then %>
+          <%= "あなたの投稿にいいねしました" %>
+        <% when 'post_comment' then %>
+          <%= "あなたの投稿にコメントしました" %>
+        <% end %>
+      <% end %>
+      <%= paginate notifications %>
+    </div>
+  <% else %>
+    <p>通知はありません</p>
+  <% end %>
+</div>

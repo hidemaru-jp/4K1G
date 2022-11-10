@@ -4,7 +4,11 @@ class Public::FavoritesController < ApplicationController
     post = Post.find(params[:post_id])
     favorite = current_user.favorites.new(post_id: post.id)
     favorite.save
-    redirect_to posts_path
+    post.create_notification_favorite!(current_user)
+    respond_to do |format|
+      format.html {redirect_to request.referrer}
+      format.js
+    end
   end
 
   def destroy
@@ -13,5 +17,7 @@ class Public::FavoritesController < ApplicationController
     favorite.destroy
     redirect_to posts_path
   end
+
+
 
 end

@@ -1,0 +1,3 @@
+module Public::NotificationsHelper
+
+end
