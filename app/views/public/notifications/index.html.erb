@@ -1,25 +1,43 @@
-<div>
+<div class ="container">
   <% notifications=@notifications.where.not(visitor_id: current_user.id) %>
   <h4 class="sub-title">通知</h4>
   <% if notifications.exists? %>
     <div class="users-index">
-      <% notifications.each do |notification| %>
+      <p class="m4-4"><%= link_to "通知を全削除", destroy_all_notifications_path, method: :delete,class: "btn btn-danger btn-sm" %></p>
+      <table class='table table-inverse'>
+        <tbody>
+          <% notifications.each do |notification| %>
+            <tr>
+              <td>
+                <% visitor=notification.visitor %>
+                <% visited=notification.visited %>
+                <%= link_to user_path(notification.visitor) do %>
+                  <%=  image_tag notification.visitor.profile_image, class:"user-thumb", style:"width: 60px;"%>
+                  <%= visitor.name %>
+                <% end %>
 
-        <% visitor=notification.visitor %>
-        <%= link_to user_path(notification.visitor) do %>
-          <%=  image_tag notification.visitor.profile_image, class:"user-thumb", style:"width: 60px;"%>
-          <%= visitor.name %>
-        <% end %>
-
-        <% case notification.action %>
-        <% when 'follow' then %>
-          <%= "あなたをフォローしました" %>
-        <% when 'favorite' then %>
-          <%= "あなたの投稿にいいねしました" %>
-        <% when 'post_comment' then %>
-          <%= "あなたの投稿にコメントしました" %>
-        <% end %>
-      <% end %>
+                <% case notification.action %>
+                <% when 'follow' then %>
+                  <%= "あなたをフォローしました" %>
+                <% when 'favorite' then %>
+                <%= link_to post_path(notification.post) do %>
+                  <%= "あなたの投稿" %>
+                <% end %>
+                  <%= "にいいねしました" %>
+                <% when 'post_comment' then %>
+                  <% if notification.post.user_id == visited.id %>
+                    <%= link_to post_path(notification.post) do %>
+                    <%= "あなたの投稿" %>
+                  <% end %>
+                <% end %>
+                  <%= "にコメントしました" %>
+                <% end %>
+                <%= time_ago_in_words(notification.created_at).upcase+'前' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
       <%= paginate notifications %>
     </div>
   <% else %>

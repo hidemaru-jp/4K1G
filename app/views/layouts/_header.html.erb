@@ -36,6 +36,9 @@
           <li>
             <%= link_to notifications_path,class: 'nav-link text-light' do %>
               <div class="nav-btn">通知</div>
+              <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle notification-circle"></i>
+              <% end %>
             <% end %>
           </li>
           <li>
