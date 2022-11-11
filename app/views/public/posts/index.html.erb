@@ -35,14 +35,40 @@
           <td>
             <% if post.favorited_by?(current_user) %>
               <p>
-                <%= link_to post_favorites_path(post.id), method: :delete do %>
-                  ♥<%= post.favorites.count %> いいね
+                <!--  いいねされている時  -->
+                <%= link_to post_favorites_path(post.id),class: "link_orange", method: :delete do %>
+                  <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_red", method: :delete do %>
+                  <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_blue", method: :delete do %>
+                  <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_green", method: :delete do %>
+                  <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_yellow", method: :delete do %>
+                  <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
                 <% end %>
               </p>
               <% else %>
               <p>
-                <%= link_to post_favorites_path(post.id), method: :post do %>
-                  ♡<%= post.favorites.count %> いいね
+                <!--  いいねされていない時  -->
+                <%= link_to post_favorites_path(post.id, reaction: 0),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 1),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 2),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 3),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 4),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
                 <% end %>
               </p>
             <% end %>
