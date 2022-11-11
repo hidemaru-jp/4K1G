@@ -29,6 +29,11 @@ Rails.application.routes.draw do
       resources :post_comments
       resource :favorites, only: [:create, :destroy]
     end
+    resources :notifications, only: [:index] do
+      collection do
+         delete 'destroy_all'
+      end
+    end
   end
 
 
