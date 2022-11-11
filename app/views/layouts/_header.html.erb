@@ -1,15 +1,11 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark ">
-    <div class="container-fluid">
+    <div class="container">
       <a class="navbar-brand" href="/">
-
+        <%= image_tag 'logo.png', class: 'logo' %>
       </a>
       <% if user_signed_in? %>
-      <a class="navbar-brand" href="/">
-      <%= image_tag 'logo.png', class: 'logo' %>
-      </a>
-
-        <h3 class="text-warning  mt-4">ようこそ<%= current_user.name%>さん</h3>
+        <h3 class=" mt-4">ようこそ<%= current_user.name%>さん</h3>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,53 +13,62 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
-
-          <li>
-            <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
-              <div class="nav-btn">マイページ</div>
+          <!-- マイページ用  -->
+          <li class="mr-2 mt-2">
+            <%= link_to user_path(current_user) do %>
+              <div><%= image_tag current_user.get_profile_image(80,80),class: "profile_image"%></div>
             <% end %>
           </li>
+          <!-- 投稿一覧用  -->
           <li>
             <%= link_to posts_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn">投稿</div>
+              <div class="nav-btn"><i class="fa-regular fa-comment-dots fa-2x"></i></div>
             <% end %>
           </li>
+          <!-- ユーザー一覧用  -->
           <li>
             <%= link_to users_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn">ユーザー</div>
+              <div class="nav-btn"><i class="fa-regular fa-user fa-2x"></i></div>
             <% end %>
           </li>
+          <!-- 通知用  -->
           <li>
             <%= link_to notifications_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn">通知</div>
-              <% if unchecked_notifications.any? %>
-                <i class="fa fa-circle notification-circle"></i>
-              <% end %>
+              <div class="nav-btn">
+                <% if unchecked_notifications.any? %>
+                  <i class="fa-solid fa-bell fa-2x" style="color: #00ff00"></i>
+                <% else %>
+                  <i class="fa-regular fa-bell fa-2x"></i>
+                <% end %>
+              </div>
             <% end %>
           </li>
+          <!-- ログアウト用  -->
           <li>
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn">ログアウト</div>
+              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-2x"></i></div>
             <% end %>
           </li>
 
         <% elsif admin_signed_in? %>
-
+          <!-- ログアウト用  -->
           <li>
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn">ログアウト</div>
+              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-2x"></i></div>
             <% end %>
           </li>
 
         <% else %>
+          <!-- 新規登録用  -->
           <li>
             <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn">新規登録</div>
+              <div class="nav-btn"><i class="fa-solid fa-user-plus fa-2x"></i></div>
             <% end %>
           </li>
+          <!-- ログイン用  -->
           <li>
             <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
-              <div class="nav-btn">ログイン</div>
+              <div class="nav-btn"><i class="fa-solid fa-right-to-bracket fa-2x"></i></div>
             <% end %>
           </li>
         <% end %>

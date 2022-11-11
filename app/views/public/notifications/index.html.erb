@@ -12,9 +12,10 @@
                 <% visitor=notification.visitor %>
                 <% visited=notification.visited %>
                 <%= link_to user_path(notification.visitor) do %>
-                  <%=  image_tag notification.visitor.profile_image, class:"user-thumb", style:"width: 60px;"%>
+                  <%=  image_tag notification.visitor.profile_image, class: "profile_image", style:"width: 60px;"%>
                   <%= visitor.name %>
                 <% end %>
+                さんが
 
                 <% case notification.action %>
                 <% when 'follow' then %>
@@ -27,9 +28,16 @@
                 <% when 'post_comment' then %>
                   <% if notification.post.user_id == visited.id %>
                     <%= link_to post_path(notification.post) do %>
-                    <%= "あなたの投稿" %>
+                      <%= "あなたの投稿" %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to post_path(notification.post) do %>
+                      <%=  image_tag notification.post.user.profile_image, class: "rounded-circle", style:"width: 60px;"%>
+                    <% end %>
+                    <%= link_to post_path(notification.post) do %>
+                      <%= notification.post.user.name+"さんの投稿" %>
+                    <% end %>
                   <% end %>
-                <% end %>
                   <%= "にコメントしました" %>
                 <% end %>
                 <%= time_ago_in_words(notification.created_at).upcase+'前' %>
