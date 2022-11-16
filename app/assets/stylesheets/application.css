@@ -56,7 +56,31 @@ footer{
    border-radius:50%;
    border-style:solid;
    border-color: #FFFFFF;
-
 }
+
+.link_orange{
+   color: orange;
+}
+
+.link_red{
+   color: red;
+}
+
+.link_blue{
+   color: blue;
+}
+
+.link_green{
+   color: green;
+}
+
+.link_yellow{
+   color: #FFCC00;
+}
+
+.link_black{
+   color: black;
+}
+
 
 

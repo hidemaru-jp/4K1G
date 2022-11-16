@@ -21,7 +21,7 @@ Rails.application.routes.draw do
      post 'guests/guest_sign_in', to: 'guests#new_guest'
     resources :users do
       member do
-        get :follows, :followers
+        get :follows, :followers, :favorites
       end
      resource :relationships, only: [:create, :destroy]
     end

@@ -1,10 +1,7 @@
 <div class="container">
-  <div class="row justify-content-end mb-3 mt-3">
-    <%= form_with url: posts_path, method: :get, local: true do |f| %>
-     <%= f.text_field :search ,placeholder: "キーワード"%>
-     <%= f.submit '検索する', name: nil %>
-    <% end %>
-  </div>
+<p>いいねした投稿一覧</p>
+
+  </table>
   <table class='table table-inverse'>
     <thead>
       <tr align="center">
@@ -16,7 +13,7 @@
       </tr>
     </thead>
     <tbody align="center">
-      <% @posts.each do |post| %>
+      <% @favorites_posts.each do |post| %>
         <tr>
           <td align="center">
             <%= link_to user_path(post.user_id) do %>
@@ -81,23 +78,5 @@
     </tbody>
   </table>
 
-  <%= paginate @posts %>
-
-  <%= form_with model: @post do |f| %>
-    <div class="form-group">
-      <%= f.label :content %>
-      <%= f.text_field :content, class: 'form-control content' %>
-    </div>
-
-    <div class="form-group">
-        <%= f.label :image %>
-        <%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit class: 'btn btn-success' %>
-    </div>
-
-  <% end %>
-
+  <%= paginate @favorites_posts %>
 </div>
