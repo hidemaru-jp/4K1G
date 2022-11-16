@@ -15,8 +15,8 @@ class Public::UsersController < ApplicationController
   end
 
   def favorites
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id).
-    @favorites_posts = Post.find(favorites)
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorites_posts = Kaminari.paginate_array(Post.find(favorites)).page(params[:page]).per(5)
   end
 
   def edit
