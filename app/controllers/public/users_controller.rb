@@ -9,7 +9,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(10).reverse_order
+    user_ids = @user.following_user.pluck(:id) # フォローしているユーザーのid一覧
+    user_ids.push(@user.id) # 自身のidを一覧に追加する
+    @posts = Post.where(user_id: user_ids).order(created_at: :desc).page(params[:page]).per(10).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
   end
