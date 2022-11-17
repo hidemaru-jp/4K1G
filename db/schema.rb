@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_11_10_082929) do
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.integer "reaction", default: 0, null: false
+    t.integer "favorited_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

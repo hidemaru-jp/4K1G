@@ -1,10 +1,45 @@
 <div class="container">
   ユーザー詳細
+  <%= @cool_count %>
 
   <table class='table'>
 
-    <tr>
+    <tr class="flex">
       <%= image_tag @user.get_profile_image(100,100) %>
+      <div class="canvas-container">
+        <canvas id="myDoughnut"></canvas>
+      </div>
+      <script>
+        var ctx = document.getElementById("myDoughnut");
+        var myDoughnut = new Chart(ctx, {
+          /* グラフの種類 (bar、line、rader、pie、doughnut、polarArea、bubble などがある) */
+          type: "doughnut",
+          data: {
+            /* 各項目のラベル(上から時計回り) */
+            labels: [
+              "⭐︎",
+              "💓",
+              "👓",
+              "🌱",
+              "💪",
+            ],
+            /* データの設定 */
+            datasets: [{
+              label: 'My First Dataset',
+              data: gon.Favorite_data,
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(255, 0, 86)',
+                'rgb(0, 205, 86)',
+
+              ],
+              hoverOffset: 4
+            }]
+          }
+        });
+      </script>
     </tr>
 
     <tr>
