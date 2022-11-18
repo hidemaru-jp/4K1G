@@ -51,6 +51,12 @@
           </li>
 
         <% elsif admin_signed_in? %>
+          <!-- ユーザー一覧用  -->
+          <li>
+            <%= link_to admin_users_path,class: 'nav-link text-light' do %>
+              <div class="nav-btn"><i class="fa-regular fa-user fa-2x"></i></div>
+            <% end %>
+          </li>
           <!-- ログアウト用  -->
           <li>
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>

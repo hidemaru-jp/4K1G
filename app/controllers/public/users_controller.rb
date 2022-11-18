@@ -49,6 +49,18 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     @users = user.follower_user.page(params[:page]).per(3).reverse_order
   end
+  
+  def unsubscribe
+    @user = current_user
+  end
+
+  def withdraw
+    @user = current_user
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
 
 
   private
