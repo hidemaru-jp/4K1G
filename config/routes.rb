@@ -15,11 +15,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: "public/homes#top"
-  get '/about' => "public/homes#about", as: "about"
 
   scope module: :public do
      post 'guests/guest_sign_in', to: 'guests#new_guest'
     resources :users do
+      get '/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+      patch '/withdraw' => 'users#withdraw', as: 'withdraw'
       member do
         get :follows, :followers, :favorites
       end
@@ -35,6 +36,12 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :admin do
+    resources :users
+  end
+
+
 
 
 end

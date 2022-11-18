@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-10 mx-auto my-5">
+      <div class="main-visual">
+        <div class="main-visual-content">
+          <div class="main-visual-text">
+            <h2 class="withdrawal_title text-center">本当に退会しますか？</h2>
+            <div class="col-lg-1"></div>
+            <p class="withdrawal_text text-center">
+              退会すると、会員登録情報や<br>
+              これまでの購入履歴が閲覧できなくなります。<br>
+              退会する場合は、「退会する」をクリックしてください。
+            </p>
+            <div class="row align-items-center">
+              <div class="col-lg-3 mx-auto text-center">
+                <div><%= link_to '退会しない',user_path(current_user), class:  "btn btn-success" %></div>
+              </div>
+              <div class="col-lg-3 mx-auto text-center"><%= link_to "退会する", user_withdraw_path(@user), method: :patch, class: "glyphicon glyphicon-tint btn btn-danger"%></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

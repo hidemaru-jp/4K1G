@@ -19,6 +19,10 @@ class User < ApplicationRecord
   #プロフィール写真を取得するための記述
   has_one_attached :profile_image
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
