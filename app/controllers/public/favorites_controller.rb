@@ -2,8 +2,9 @@ class Public::FavoritesController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    @params = params[:reaction]
-    favorite = current_user.favorites.new(post_id: post.id,reaction: @params)
+    @reaction = params[:reaction]
+    @favorited = params[:favorited_id]
+    favorite = current_user.favorites.new(post_id: post.id,reaction: @reaction,favorited_id: @favorited)
     favorite.save
     post.create_notification_favorite!(current_user)
     respond_to do |format|
@@ -18,6 +19,8 @@ class Public::FavoritesController < ApplicationController
     favorite.destroy
     redirect_to posts_path
   end
+  
+  
 
 
 

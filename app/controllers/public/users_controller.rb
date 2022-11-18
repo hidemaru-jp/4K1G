@@ -14,6 +14,8 @@ class Public::UsersController < ApplicationController
     @posts = Post.where(user_id: user_ids).order(created_at: :desc).page(params[:page]).per(10).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
+    gon.Favorite_data = @user.circle_data(@user) #ここで代入したデータをJavaScriptに渡す
+
   end
 
   def favorites

@@ -54,5 +54,18 @@ class User < ApplicationRecord
     end
   end
 
+  def circle_data(user)
+    cool_count = Favorite.where(favorited_id: user.id,reaction: 0).count
+    cute_count = Favorite.where(favorited_id: user.id,reaction: 1).count
+    clever_count = Favorite.where(favorited_id: user.id,reaction: 2).count
+    lol_count = Favorite.where(favorited_id: user.id,reaction: 3).count
+    power_count = Favorite.where(favorited_id: user.id,reaction: 4).count
+
+
+    #以下の配列がcircle_dataを使った時の返り値
+    [cool_count, cute_count, clever_count,lol_count,power_count]
+     #以上の配列がcircle_dataを使った時の返り値
+  end
+
 
 end

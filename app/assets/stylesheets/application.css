@@ -82,5 +82,13 @@ footer{
    color: black;
 }
 
+.canvas-container{
+   position: relative;
+   width:  250px;
+   height: 300px;
+   overflow: hidden;
+   margin:20px;
+}
+
 
 
