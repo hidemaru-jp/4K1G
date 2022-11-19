@@ -1,1 +1,15 @@
-Hello world
+<div class ="container mt-3">
+
+  <h1>ようこそ4K1Gへ</h1>
+  <p>
+    このサイトは他人と交流することのできるSNSサイトで、<br>
+    他人の投稿に対して、かっこいい⭐︎、可愛い💓、賢い🗒、<br>
+    草生える🌱、元気が出る💪 という４K１Gのアクションが出来ます。
+  </p>
+  <div class="d-flex flex-column">
+    <%= link_to '新規登録', user_registration_path, method: :post %>
+    <%= link_to 'ログイン', user_session_path, method: :post %>
+    <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post %>
+  </div>
+</div>
+

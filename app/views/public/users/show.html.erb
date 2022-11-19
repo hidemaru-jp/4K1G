@@ -1,0 +1,168 @@
+<div class="container">
+  <div>ユーザー詳細</div>
+  <div class="row">
+    <div class="col-mt-2 mx-auto">
+      <div class = "d-flex">
+        <div>
+          <div><%= image_tag @user.get_profile_image(100,100) %></div>
+          <div class="d-flex">
+            <%= link_to follows_user_path(@user) do %>
+            <h6>フォロー<%= @following_users.count %></h6>
+            <% end %>&nbsp;&nbsp;
+            <%= link_to followers_user_path(@user) do %>
+            <h6>フォロワー<%= @follower_users.count %></h6>
+            <% end %>
+            <%= link_to "いいねした投稿", favorites_user_path %>
+          </div>
+        </div>
+      </div>
+      <table class='table'>
+        <tbody>
+          <tr>
+        	  <td>name</td>
+        	  <td><%= @user.name %></td>
+          </tr>
+          <tr>
+        	  <td>introduction</td>
+        	  <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <% if current_user != @user %>
+              <% if current_user.following?(@user) %>
+                <%= link_to 'フォロー外す', user_relationships_path(@user.id), method: :delete, class: "btn-sm btn-danger" %>
+              <% else %>
+                <%= link_to 'フォローする', user_relationships_path(@user.id), method: :POST, class:"btn-sm btn-success" %>
+              <% end %>
+            <% end %>
+          </tr>
+          <tr>
+            <th>
+              <% if current_user == @user && current_user.name != 'guest' %>
+                <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn-success" %>
+              <% end %>
+            <th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-mt-2 mx-auto">
+      <div class="canvas-container">
+        <canvas id="myDoughnut"></canvas>
+      </div>
+      <script>
+        var ctx = document.getElementById("myDoughnut");
+        var myDoughnut = new Chart(ctx, {
+          /* グラフの種類 (bar、line、rader、pie、doughnut、polarArea、bubble などがある) */
+          type: "doughnut",
+          data: {
+            /* 各項目のラベル(上から時計回り) */
+            labels: [
+              "⭐︎",
+              "💓",
+              "👓",
+              "🌱",
+              "⚡️",
+            ],
+            /* データの設定 */
+            datasets: [{
+              data: gon.Favorite_data,
+              backgroundColor: [
+                'rgb(255, 140, 0)',
+                'rgb(255, 0, 255)',
+                'rgb(0, 0, 255)',
+                'rgb(173, 255, 47)',
+                'rgb(255, 255, 0)',
+
+              ],
+              hoverOffset: 4
+            }]
+          },
+          options: {
+           plugins: {
+          　legend: {
+          　　display: false,
+          　  },
+            },
+          },
+        });
+      </script>
+    </div>
+  </div>
+  <table class='table table-inverse'>
+    <thead>
+      <tr align="center">
+        <th >ユーザー</th>
+        <th>投稿内容</th>
+        <th></th>
+        <th></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody align="center">
+      <% @posts.each do |post| %>
+        <tr>
+          <td align="center">
+            <%= link_to user_path(post.user_id) do %>
+              <div><%= image_tag post.user.get_profile_image(100,100),class: "profile_image"%></div>
+              <div><%= post.user.name %></div>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to post_path(post.id) do %>
+              <%= post.content %>
+              <% if post.get_image.present? %>
+                <%= image_tag post.get_image %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if post.favorited_by?(current_user) %>
+              <p>
+                <!--  いいねされている時  -->
+                <%= link_to post_favorites_path(post.id),class: "link_orange", method: :delete do %>
+                  <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_red", method: :delete do %>
+                  <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_blue", method: :delete do %>
+                  <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_green", method: :delete do %>
+                  <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_yellow", method: :delete do %>
+                  <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <!--  いいねされていない時  -->
+                <%= link_to post_favorites_path(post.id, reaction: 0),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 1),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 2),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 3),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 4),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
+                <% end %>
+              </p>
+            <% end %>
+          </td>
+          <% if current_user.id == post.user_id %>
+            <td><%= link_to 'Destroy', post_path(post.id), method: :delete, class: "btn btn-sm btn-danger"%></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @posts %>
+</div>

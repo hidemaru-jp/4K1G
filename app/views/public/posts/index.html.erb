@@ -1,28 +1,97 @@
 <div class="container">
-  <table class='table table-hover table-inverse'>
+  <div class="row justify-content-end mb-3 mt-3">
+    <%= form_with url: posts_path, method: :get, local: true do |f| %>
+     <%= f.text_field :search ,placeholder: "キーワード"%>
+     <%= f.submit '検索する', name: nil %>
+    <% end %>
+  </div>
+  <table class='table table-inverse'>
     <thead>
-      <tr>
+      <tr align="center">
+        <th >ユーザー</th>
+        <th>投稿内容</th>
         <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-        <th>Tag</th>
+        <th></th>
         <th colspan="3"></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody align="center">
       <% @posts.each do |post| %>
         <tr>
-          <td><%= post.content %></td>
-          <td><%= link_to 'Destroy', post_path(post.id), method: :delete, class: "btn btn-sm btn-danger"%></td>
+          <td align="center">
+            <%= link_to user_path(post.user_id) do %>
+              <div><%= image_tag post.user.get_profile_image(100,100),class: "profile_image"%></div>
+              <div><%= post.user.name %></div>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to post_path(post.id) do %>
+              <%= post.content %>
+              <% if post.get_image.present? %>
+                <%= image_tag post.get_image %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if post.favorited_by?(current_user) %>
+              <p>
+                <!--  いいねされている時  -->
+                <%= link_to post_favorites_path(post.id),class: "link_orange", method: :delete do %>
+                  <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_red", method: :delete do %>
+                  <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_blue", method: :delete do %>
+                  <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_green", method: :delete do %>
+                  <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id),class: "link_yellow", method: :delete do %>
+                  <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <!--  いいねされていない時  -->
+                <%= link_to post_favorites_path(post.id, reaction: 0, favorited_id: post.user.id),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 1, favorited_id: post.user.id),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 2, favorited_id: post.user.id),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 3, favorited_id: post.user.id),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
+                <% end %>
+                <%= link_to post_favorites_path(post.id, reaction: 4, favorited_id: post.user.id),class: "link_black", method: :post do %>
+                  <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
+                <% end %>
+              </p>
+            <% end %>
+          </td>
+          <% if current_user.id == post.user_id %>
+            <td><%= link_to 'Destroy', post_path(post.id), method: :delete, class: "btn btn-sm btn-danger"%></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
   </table>
 
+  <%= paginate @posts %>
+
   <%= form_with model: @post do |f| %>
     <div class="form-group">
       <%= f.label :content %>
       <%= f.text_field :content, class: 'form-control content' %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :image %>
+        <%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %>
     </div>
 
     <div class="form-group">

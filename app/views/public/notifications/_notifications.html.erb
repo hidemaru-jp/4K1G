@@ -1,0 +1,19 @@
+<% visitor=@notification.visitor_id %>
+<% visited=Notification.visited %>
+
+<div class="user-view clearfix ">
+  <%= link_to user_path(notification.visitor) do %>
+    <%=  image_tag notification.visitor.image[:small].url, class:"user-thumb", style:"width: 60px;"%>
+    <%  visitor.name さんが %>
+  <% end %>
+
+  <% case notification.action %>
+  <% when 'follow' then %>
+    <%= "あなたをフォローしました" %>
+  <% when 'like' then %>
+    <%= "あなたの投稿にいいねしました" %>
+  <% when 'post_comment' then %>
+    <%= "あなたの投稿にコメントしました" %>
+  <% end %>
+
+</div>
