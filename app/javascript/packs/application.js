@@ -13,6 +13,7 @@ import "bootstrap";
 import "../stylesheets/application"
 import Chart from "chart.js/auto";
 global.Chart = Chart;
+import 'stylesheets/application'
 
 Rails.start()
 Turbolinks.start()
