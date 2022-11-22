@@ -1,10 +1,12 @@
 <div class ="container">
   <% notifications=@notifications.where.not(visitor_id: current_user.id) %>
-  <h4 class="sub-title">通知</h4>
+  <div class="d-flex">
+    <h1 class="card mt-3" style="width: 100px;">通知</h1>
+  </div>
   <% if notifications.exists? %>
     <div class="users-index">
       <p class="m4-4"><%= link_to "通知を全削除", destroy_all_notifications_path, method: :delete,class: "btn btn-danger btn-sm" %></p>
-      <table class='table table-inverse'>
+      <table class='table bg-light'>
         <tbody>
           <% notifications.each do |notification| %>
             <tr>

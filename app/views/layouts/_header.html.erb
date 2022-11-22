@@ -1,12 +1,10 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark ">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top ">
     <div class="container">
       <a class="navbar-brand" href="/">
         <%= image_tag 'logo.png', class: 'logo' %>
       </a>
-      <% if user_signed_in? %>
-        <h3 class=" mt-4">ようこそ<%= current_user.name%>さん</h3>
-      <% end %>
+      <h5 class=" mt-2">4K1G</h3>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -16,19 +14,19 @@
           <!-- マイページ用  -->
           <li class="mr-2 mt-2">
             <%= link_to user_path(current_user) do %>
-              <div><%= image_tag current_user.get_profile_image(80,80),class: "profile_image"%></div>
+              <div><%= image_tag current_user.get_profile_image(35,35),class: "profile_image"%></div>
             <% end %>
           </li>
           <!-- 投稿一覧用  -->
           <li>
             <%= link_to posts_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-regular fa-comment-dots fa-2x"></i></div>
+              <div class="nav-btn"><i class="fa-regular fa-comment-dots fa-1x"></i></div>
             <% end %>
           </li>
           <!-- ユーザー一覧用  -->
           <li>
             <%= link_to users_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-regular fa-user fa-2x"></i></div>
+              <div class="nav-btn"><i class="fa-regular fa-user fa-1x"></i></div>
             <% end %>
           </li>
           <!-- 通知用  -->
@@ -36,9 +34,9 @@
             <%= link_to notifications_path,class: 'nav-link text-light' do %>
               <div class="nav-btn">
                 <% if unchecked_notifications.any? %>
-                  <i class="fa-solid fa-bell fa-2x" style="color: #00ff00"></i>
+                  <i class="fa-solid fa-bell fa-1x" style="color: #00ff00"></i>
                 <% else %>
-                  <i class="fa-regular fa-bell fa-2x"></i>
+                  <i class="fa-regular fa-bell fa-1x"></i>
                 <% end %>
               </div>
             <% end %>
@@ -46,7 +44,7 @@
           <!-- ログアウト用  -->
           <li>
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-2x"></i></div>
+              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
             <% end %>
           </li>
 
@@ -54,13 +52,13 @@
           <!-- ユーザー一覧用  -->
           <li>
             <%= link_to admin_users_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-regular fa-user fa-2x"></i></div>
+              <div class="nav-btn"><i class="fa-regular fa-user fa-1x"></i></div>
             <% end %>
           </li>
           <!-- ログアウト用  -->
           <li>
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-2x"></i></div>
+              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
             <% end %>
           </li>
 
@@ -68,13 +66,13 @@
           <!-- 新規登録用  -->
           <li>
             <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-solid fa-user-plus fa-2x"></i></div>
+              <div class="nav-btn"><i class="fa-solid fa-user-plus fa-1x"></i></div>
             <% end %>
           </li>
           <!-- ログイン用  -->
           <li>
             <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-solid fa-right-to-bracket fa-2x"></i></div>
+              <div class="nav-btn"><i class="fa-solid fa-right-to-bracket fa-1x"></i></div>
             <% end %>
           </li>
         <% end %>

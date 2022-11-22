@@ -11,7 +11,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     user_ids = @user.following_user.pluck(:id) # フォローしているユーザーのid一覧
     user_ids.push(@user.id) # 自身のidを一覧に追加する
-    @posts = Post.where(user_id: user_ids).order(created_at: :desc).page(params[:page]).per(10).reverse_order
+    @posts = Post.where(user_id: user_ids).page(params[:page]).per(10).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
     gon.Favorite_data = @user.circle_data(@user) #ここで代入したデータをJavaScriptに渡す
@@ -49,7 +49,7 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     @users = user.follower_user.page(params[:page]).per(3).reverse_order
   end
-  
+
   def unsubscribe
     @user = current_user
   end
