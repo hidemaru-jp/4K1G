@@ -15,8 +15,14 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      redirect_to posts_path
+    else
+      @posts = Post.page(params[:page]).per(10).reverse_order
+      @post = Post.new
+      @posts = @posts.where('content LIKE ?', "%#{params[:search]}%") if params[:search].present?
+      render :index
+    end
   end
 
   def destroy
