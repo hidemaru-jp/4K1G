@@ -1,8 +1,8 @@
 <div class="container">
   <div>
-    <h1 class="card mt-3" style="width: 300px;">ユーザー一覧</h1>
+    <h3 class="title">ユーザー一覧</h3>
   </div>
-  <div class="row justify-content-end mb-3 mt-3">
+  <div class="row justify-content-end mb-3">
     <%= form_with url: users_path, method: :get, local: true do |f| %>
      <%= f.text_field :search ,placeholder: "ユーザー名"%>
      <%= f.submit '検索する', name: nil %>

@@ -1,11 +1,13 @@
 <div class ="container">
   <% notifications=@notifications.where.not(visitor_id: current_user.id) %>
   <div class="d-flex">
-    <h1 class="card mt-3" style="width: 100px;">通知</h1>
+    <h3 class="title">通知</h3>
   </div>
   <% if notifications.exists? %>
     <div class="users-index">
-      <p class="m4-4"><%= link_to "通知を全削除", destroy_all_notifications_path, method: :delete,class: "btn btn-danger btn-sm" %></p>
+      <div class="row justify-content-end mb-3">
+        <p class="m4-4"><%= link_to "通知を全削除", destroy_all_notifications_path, method: :delete,class: "btn btn-danger btn-sm" %></p>
+      </div>
       <table class='table bg-light'>
         <tbody>
           <% notifications.each do |notification| %>
@@ -51,6 +53,8 @@
       <%= paginate notifications %>
     </div>
   <% else %>
-    <p>通知はありません</p>
+    <p class="bg-white" style="display:inline-block;">
+      通知はありません
+    </p>
   <% end %>
 </div>
