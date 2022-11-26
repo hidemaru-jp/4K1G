@@ -6,10 +6,18 @@
         自分の好きな投稿をしたり、<br>
         ５種類のいいね機能を使って交流を深めよう！<br>
       </p>
-      <div class="d-flex flex-column">
-        <%= link_to '新規登録', user_registration_path, method: :post %>
-        <%= link_to 'ログイン', user_session_path, method: :post %>
-        <%= link_to 'ゲストログイン', guests_guest_sign_in_path, method: :post %>
+      <div>
+        <div>
+          <%= link_to '新規登録', user_registration_path, class: "btn btn--red btn--radius btn--cubic", method: :post %>
+        </div>
+        &nbsp;&nbsp;
+        <div>
+          <%= link_to 'ログイン', user_session_path, class: "btn btn--blue btn--radius btn--cubic", method: :post %>
+        </div>
+        &nbsp;&nbsp;
+        <div>
+          <%= link_to 'ゲストログイン', guests_guest_sign_in_path, class: "btn btn--green btn--radius btn--cubic", method: :post %>
+        </div>
       </div>
     </div>
   </div>

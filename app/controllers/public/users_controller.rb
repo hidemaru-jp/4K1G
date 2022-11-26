@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_current_user, only: [:edit,:delete]
   before_action :set_user, only: [:favorites]
 
   def index
@@ -33,13 +35,6 @@ class Public::UsersController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.name == "guest"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-    end
-  end
-
   def follows
     user = User.find(params[:id])
     @users = user.following_user.page(params[:page]).per(3).reverse_order
@@ -71,6 +66,20 @@ class Public::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guest"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+  end
+
+  def ensure_current_user
+    if current_user.id != params[:id].to_i
+      flash[:notice]="権限がありません"
+      redirect_to user_path(current_user)
+    end
   end
 
 end

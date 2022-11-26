@@ -4,7 +4,6 @@
       <a class="navbar-brand" href="/">
         <%= image_tag 'logo.png', class: 'logo' %>
       </a>
-      <h5 class=" mt-2">4K1G</h3>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -12,27 +11,30 @@
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <!-- マイページ用  -->
-          <li class="mr-2 mt-2">
-            <%= link_to user_path(current_user) do %>
-              <div><%= image_tag current_user.get_profile_image(35,35),class: "profile_image"%></div>
+          <li class="mr-3">
+            <%= link_to user_path(current_user),class: 'nav-link text-light text-center' do %>
+              <div><%= image_tag current_user.get_profile_image(37,37),class: "profile_image"%></div>
             <% end %>
+            <p class="text-white mb-0">マイページ</p>
           </li>
           <!-- 投稿一覧用  -->
-          <li>
-            <%= link_to posts_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-regular fa-comment-dots fa-1x"></i></div>
+          <li class="mr-3">
+            <%= link_to posts_path,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto"><i class="fa-regular fa-comment-dots fa-1x"></i></div>
             <% end %>
+            <p class="text-center text-white mb-0">投稿一覧</p>
           </li>
           <!-- ユーザー一覧用  -->
-          <li>
-            <%= link_to users_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-regular fa-user fa-1x"></i></div>
+          <li class="mr-3">
+            <%= link_to users_path,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto"><i class="fa-regular fa-user fa-1x"></i></div>
             <% end %>
+            <p class="text-center text-white mb-0">ユーザー</p>
           </li>
           <!-- 通知用  -->
-          <li>
-            <%= link_to notifications_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn">
+          <li class="mr-3">
+            <%= link_to notifications_path,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto">
                 <% if unchecked_notifications.any? %>
                   <i class="fa-solid fa-bell fa-1x" style="color: #00ff00"></i>
                 <% else %>
@@ -40,40 +42,53 @@
                 <% end %>
               </div>
             <% end %>
+            <p class="text-center text-white mb-0">通知</p>
           </li>
           <!-- ログアウト用  -->
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
+          <li class="mr-3">
+            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
             <% end %>
+            <p class="text-center text-white mb-0">ログアウト</p>
           </li>
 
         <% elsif admin_signed_in? %>
           <!-- ユーザー一覧用  -->
-          <li>
-            <%= link_to admin_users_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-regular fa-user fa-1x"></i></div>
+          <li class="mr-3">
+            <%= link_to admin_users_path,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto"><i class="fa-regular fa-user fa-1x"></i></div>
             <% end %>
+            <p class="text-center text-white mb-0">ユーザー</p>
+          </li>
+          <!-- 投稿一覧用  -->
+          <li class="mr-3">
+            <%= link_to admin_posts_path,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto"><i class="fa-regular fa-comment-dots fa-1x"></i></div>
+            <% end %>
+            <p class="text-center text-white mb-0">投稿一覧</p>
           </li>
           <!-- ログアウト用  -->
-          <li>
-            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
+          <li class="mr-3">
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
             <% end %>
+            <p class="text-center text-white mb-0">ログアウト</p>
           </li>
 
         <% else %>
           <!-- 新規登録用  -->
-          <li>
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-              <div class="nav-btn"><i class="fa-solid fa-user-plus fa-1x"></i></div>
+          <li class="mr-3">
+            <%= link_to new_user_registration_path,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto"><i class="fa-solid fa-user-plus fa-1x"></i></div>
             <% end %>
+            <p class="text-center text-white mb-0">新規登録</p>
           </li>
           <!-- ログイン用  -->
-          <li>
-            <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
+          <li class="mr-3">
+            <%= link_to new_user_session_path ,class: 'nav-link text-light text-center' do %>
               <div class="nav-btn"><i class="fa-solid fa-right-to-bracket fa-1x"></i></div>
             <% end %>
+            <p class="text-center text-white mb-0">ログイン</p>
           </li>
         <% end %>
         </ul>

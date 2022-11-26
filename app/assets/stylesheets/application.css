@@ -94,6 +94,23 @@ body:after {
    overflow: hidden;
 }
 
+/*ページネーション自体のデザイン*/
+.pagination>li>a {          
+   border: none;     /*枠線をなくす*/
+   color: #696969;   /*文字の色を変える*/
+ }
+ 
+ /* 表示しているページ番号のデザイン */
+ .pagination>.active>a {     
+   background: #93c9ff;     /*背景の色を変える*/
+   border-radius: 15px;     /*角を丸くする*/
+ }
+ 
+ /*ホバー時のデザイン*/
+ .pagination>li>a:hover {        
+   border-radius: 15px;    /*角を丸くする*/
+ }
+
 .pagination {
   justify-content: center;
 }
@@ -106,6 +123,80 @@ body:after {
    margin-bottom: 30px;
 }
 
+.btn--red,
+a.btn--red {
+  color: #000;
+  background-color: #ff5758;
+}
+.btn--red:hover,
+a.btn--red:hover {
+  color: #000;
+  background: #ff8c8d
+}
+
+a.btn--red.btn--cubic {
+   border-bottom: 5px solid #b13c3c;
+ }
+ 
+ a.btn--red.btn--cubic:hover {
+   margin-top: 3px;
+   border-bottom: 2px solid #c27d7d;
+ }
+
+ .btn--blue,
+a.btn--blue {
+  color: #000;
+  background-color: #39b7ff;
+}
+.btn--blue:hover,
+a.btn--blue:hover {
+  color: #000;
+  background: #89d1fa;
+}
+
+a.btn--blue.btn--cubic {
+   border-bottom: 5px solid #26719c;
+ }
+ 
+ a.btn--blue.btn--cubic:hover {
+   margin-top: 3px;
+   border-bottom: 2px solid #8297a3;
+ }
+
+ .btn--green,
+ a.btn--green {
+   color: #000;
+   background-color: #c9e265;
+ }
+ .btn--green:hover,
+ a.btn--green:hover {
+   color: #000;
+   background: #e1e9bf;
+ }
+ 
+ a.btn--green.btn--cubic {
+    border-bottom: 5px solid #9eb24f;
+  }
+  
+  a.btn--green.btn--cubic:hover {
+    margin-top: 3px;
+    border-bottom: 2px solid #a8ae92;
+  }
+ 
+ a.btn--radius {
+   border-radius: 100vh;
+ }
+
+.fa-position-left {
+   position: absolute;
+   top: calc(50% - .5em);
+   left: 1rem;
+ }
+ .fa-position-right {
+   position: absolute;
+   top: calc(50% - .5em);
+   right: 1rem;
+ }
 
 
 

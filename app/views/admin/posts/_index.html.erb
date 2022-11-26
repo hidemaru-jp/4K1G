@@ -1,0 +1,31 @@
+<% posts.each do |post| %>
+  <div style="margin-bottom: 10px;">
+      <div class="row">
+        <div class="col-2 text-right">
+          <%= link_to user_path(post.user_id) do %>
+            <div><%= image_tag post.user.get_profile_image(70,70),class: "profile_image"%></div>
+          <% end %>
+        </div>
+        <div class="col-8">
+          <div class="card">
+            <li class="list-group-item">
+              <div class="d-flex"><%= post.user.name %>&nbsp;&nbsp;&nbsp;<p style="color: grey;"><%= time_ago_in_words(post.created_at).upcase+'前' %></p></div>
+              <%= post.content %>
+              <% if post.get_image.present? %>
+                <%= image_tag post.get_image %>
+              <% end %>
+            </li>
+            <li class="list-group-item">
+              <p>
+                <%= link_to admin_post_path(post.id) do %>
+                  <i class="fa-solid fa-reply"></i><%= post.post_comments.count %>
+                <% end %>&nbsp;&nbsp;
+                <%= link_to 'Destroy', admin_post_path(post.id), method: :delete, class: "btn btn-sm btn-danger"%>
+              </p>
+            </li>
+          </div>
+        </div>
+      </div>
+  </div>
+<% end %>
+<%= paginate posts %>

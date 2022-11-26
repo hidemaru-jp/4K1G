@@ -39,6 +39,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :posts do
+      resources :post_comments
+    end
+
   end
 
 
