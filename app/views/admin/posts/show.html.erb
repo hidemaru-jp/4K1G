@@ -61,11 +61,9 @@
         <%= form_with model: [@post,@post_comment] do |f| %>
 
           <div class="row justify-content-center">
-            <div class="col-2 d-flex align-items-center justify-content-center">コメント</div>
-            <div class="col-3 d-flex align-items-center"><%= f.text_field :comment, class: 'form-control content' %></div>
-            <div class="col-1 d-flex align-items-center justify-content-center">画像</div>
-            <div class="col-4 d-flex align-items-center"><%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %></div>
-            <div class="col-2 d-flex align-items-center"><%= f.submit  "投稿する", class: 'btn btn-success' %></div>
+          <div class="col-12 col-md-6 d-flex align-items-center"><%= f.text_field :comment, class: 'form-control content',placeholder: 'コメントしよう！' %></div>
+          <div class="col-7 col-md-4 d-flex align-items-center"><%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %></div>
+          <div class="col-5 col-md-2 d-flex align-items-center"><%= f.submit  "投稿する", class: 'btn btn-success' %></div>
           </div>
         <% end %>
       </div>

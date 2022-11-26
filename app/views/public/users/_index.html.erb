@@ -1,4 +1,6 @@
-    <% users.each do |user| %>
+<div class="row">
+  <% users.each do |user| %>
+  <div class="col-12 col-lg-6">
     <div class="card" style="margin-bottom: 10px;">
       <div class="row">
         <div class="col-3 d-flex align-items-center justify-content-center">
@@ -24,5 +26,7 @@
         </div>
       </div>
     </div>
-    <% end %>
-    <%= paginate users %>
+  </div>
+  <% end %>
+</div>
+<%= paginate users %>

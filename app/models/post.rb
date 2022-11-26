@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :notifications,dependent: :destroy
-  validates :content, presence: true
+  validates :content, length: { minimum: 1, maximum: 100 }
 
   has_one_attached :image
 

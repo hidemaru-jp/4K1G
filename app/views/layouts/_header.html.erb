@@ -13,30 +13,30 @@
           <!-- マイページ用  -->
           <li class="mr-3">
             <%= link_to user_path(current_user),class: 'nav-link text-light text-center' do %>
-              <div><%= image_tag current_user.get_profile_image(37,37),class: "profile_image"%></div>
+              <div><%= image_tag current_user.get_profile_image(37,37),class: "profile_image btn--circle"%></div>
             <% end %>
             <p class="text-white mb-0">マイページ</p>
           </li>
           <!-- 投稿一覧用  -->
           <li class="mr-3">
             <%= link_to posts_path,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto"><i class="fa-regular fa-comment-dots fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--red btn--red-circle "><i class="fa-regular fa-comment-dots fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">投稿一覧</p>
           </li>
           <!-- ユーザー一覧用  -->
           <li class="mr-3">
             <%= link_to users_path,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto"><i class="fa-regular fa-user fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--blue btn--blue-circle"><i class="fa-regular fa-user fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">ユーザー</p>
           </li>
           <!-- 通知用  -->
           <li class="mr-3">
             <%= link_to notifications_path,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto">
+              <div class="nav-btn mx-auto  btn--green btn--green-circle">
                 <% if unchecked_notifications.any? %>
-                  <i class="fa-solid fa-bell fa-1x" style="color: #00ff00"></i>
+                  <i class="fa-solid fa-bell fa-1x" style="color: #8480ff"></i>
                 <% else %>
                   <i class="fa-regular fa-bell fa-1x"></i>
                 <% end %>
@@ -47,7 +47,7 @@
           <!-- ログアウト用  -->
           <li class="mr-3">
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--yellow btn--yellow-circle"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">ログアウト</p>
           </li>
@@ -56,21 +56,21 @@
           <!-- ユーザー一覧用  -->
           <li class="mr-3">
             <%= link_to admin_users_path,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto"><i class="fa-regular fa-user fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--blue btn--blue-circle"><i class="fa-regular fa-user fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">ユーザー</p>
           </li>
           <!-- 投稿一覧用  -->
           <li class="mr-3">
             <%= link_to admin_posts_path,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto"><i class="fa-regular fa-comment-dots fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--green btn--green-circle"><i class="fa-regular fa-comment-dots fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">投稿一覧</p>
           </li>
           <!-- ログアウト用  -->
           <li class="mr-3">
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--yellow btn--yellow-circle"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">ログアウト</p>
           </li>
@@ -79,14 +79,14 @@
           <!-- 新規登録用  -->
           <li class="mr-3">
             <%= link_to new_user_registration_path,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn mx-auto"><i class="fa-solid fa-user-plus fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--green btn--green-circle"><i class="fa-solid fa-user-plus fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">新規登録</p>
           </li>
           <!-- ログイン用  -->
           <li class="mr-3">
             <%= link_to new_user_session_path ,class: 'nav-link text-light text-center' do %>
-              <div class="nav-btn"><i class="fa-solid fa-right-to-bracket fa-1x"></i></div>
+              <div class="nav-btn mx-auto btn--yellow btn--yellow-circle"><i class="fa-solid fa-right-to-bracket fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">ログイン</p>
           </li>
