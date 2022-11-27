@@ -49,7 +49,7 @@
             </div>
             <div class="d-flex align-items-center justify-content-center">
               <% if current_user.id == post_comment.user_id %>
-                <%= link_to 'Destroy', post_post_comment_path(post_comment.post,post_comment), method: :delete, class: "btn btn-sm btn-danger"%>
+                <%= link_to '削除する', post_post_comment_path(post_comment.post,post_comment), method: :delete, class: "btn btn-sm btn-danger"%>
               <% end %>
             </div>
           </div>
