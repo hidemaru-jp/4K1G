@@ -76,6 +76,13 @@
           </li>
 
         <% else %>
+          <!-- About用  -->
+          <li class="mr-3">
+            <%= link_to about_path,class: 'nav-link text-light text-center' do %>
+              <div class="nav-btn mx-auto btn--blue btn--blue-circle"><i class="fa-solid fa-circle-info fa-1x"></i></div>
+            <% end %>
+            <p class="text-center text-white mb-0">About</p>
+          </li>
           <!-- 新規登録用  -->
           <li class="mr-3">
             <%= link_to new_user_registration_path,class: 'nav-link text-light text-center' do %>

@@ -61,6 +61,11 @@ body:after {
    border-color: #FFFFFF;
 }
 
+.text-orange{
+  color: #ffc008;
+}
+
+
 .link_orange{
    color: orange;
 }
@@ -185,6 +190,27 @@ a.btn--blue.btn--cubic {
   a.btn--green.btn--cubic:hover {
     margin-top: 3px;
     border-bottom: 2px solid #a8ae92;
+  }
+
+
+.btn--yellow,
+a.btn--yellow {
+  color: #000;
+  background-color: #fede5a;
+}
+.btn--yellow:hover,
+a.btn--yellow:hover {
+  color: #000;
+  background: #ffec9f;
+}
+
+a.btn--yellow.btn--cubic {
+    border-bottom: 5px solid #baa341;
+  }
+  
+  a.btn--yellow.btn--cubic:hover {
+    margin-top: 3px;
+    border-bottom: 2px solid #baaf81;
   }
  
  a.btn--radius {

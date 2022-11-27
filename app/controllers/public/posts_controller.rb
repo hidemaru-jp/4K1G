@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    @post_comments = @post.post_comments
+    @post_comments = @post.post_comments.page(params[:page]).per(10).reverse_order
   end
 
   def create
