@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'capybara/rspec'
 
 describe'モデルのテスト'do
   before do
@@ -23,15 +22,72 @@ describe'モデルのテスト'do
   end
 end
 
-describe 'ログインのテスト'do
-  describe'トップ画面のテスト'do
+describe 'トップ画面のテスト', type: :feature do
+  before do
+    visit root_path
+  end
+  it 'トップ画面のurlが"/"であるか' do
+    expect(current_path).to eq('/') 
+  end
+  it 'トップ画面にルートリンクがあるか'do
+    expect(page).to have_link"",href: root_path
+  end
+  it 'トップ画面にaboutリンクがあるか'do
+    expect(page).to have_link"",href: about_path
+  end
+  it 'トップ画面に新規登録リンクがあるか'do
+    expect(page).to have_link"",href: new_user_registration_path
+  end
+  it 'トップ画面にログインリンクがあるか'do
+    expect(page).to have_link"",href: new_user_session_path
+  end
+  it 'トップ画面にゲストログインリンクがあるか'do
+    expect(page).to have_link"",href: guests_guest_sign_in_path
+  end
+end
+
+describe '投稿画面のテスト' do
+  before do
+    # Userモデルのインスタンスを生成する
+      @user = FactoryBot.create(:user)
+  end
+  context 'ユーザーログイン・ログアウトのテスト',type: :feature do
     before do
       visit root_path
     end
+    it 'ログインしてログアウトできるか' do
+      visit root_path
+      click_link 'ログイン'
+      fill_in 'user[email]',with: @user.email
+      fill_in 'user[password]',with: @user.password
+      click_button 'ログイン'
+      expect(page).to have_current_path user_path(@user)
+      visit destroy_user_session_path(@user)
+    end
+    it'ログアウトできるか' do
+      visit root_path
+      sign_in @user
+      visit user_path(@user)
+      visit destroy_user_session_path(@user)
+      expect(page).to have_current_path root_path
+    end
   end
-  context'表示の確認'do
-    it'トップ画面にログインページへのリンクが表示されているか'do
-      expect(page).to have_link"",href: new_user_session_path
+  context '投稿一覧画面', type: :feature do
+    before do
+      visit root_path
+      sign_in @user
+      visit posts_path
+    end
+    it '投稿できるか' do
+      fill_in 'post[content]', with: 'Hello World'
+      click_button '投稿する'
+      expect(page).to have_current_path posts_path
+      expect(page).to have_link href: post_path(Post.last)
+      visit post_path(Post.last)
+      expect(page).to have_current_path post_path(Post.last)
+      fill_in 'post_comment[comment]', with: 'good morning'
+      click_button '投稿する'
+      click_link '削除する'
     end
   end
 end

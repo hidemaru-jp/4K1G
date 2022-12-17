@@ -6,7 +6,7 @@
         <h3 class="my-auto text-center">新規登録</h3>
       </div>
       <div class="list-group-item">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= form_with model: @user, url: user_registration_path do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
     
         <div class="field text-center">
@@ -17,7 +17,7 @@
     
         <div class="field text-center">
           <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autocomplete: "email" %>
+          <%= f.email_field :email, class:'form-control', autocomplete: "email" %>
         </div>
         <br />
     
@@ -26,13 +26,13 @@
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> 文字以上)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, class:'form-control', autocomplete: "new-password" %>
         </div>
         <br />
     
         <div class="field text-center">
           <%= f.label :パスワード再入力 %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, class:'form-control', autocomplete: "new-password" %>
         </div>
         <br />
     

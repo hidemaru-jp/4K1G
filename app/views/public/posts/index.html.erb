@@ -4,8 +4,8 @@
   </div>
   <div class="row justify-content-end mb-3">
     <%= form_with url: posts_path, method: :get, local: true do |f| %>
-     <%= f.text_field :search ,placeholder: "キーワード"%>
-     <%= f.submit '検索する', name: nil %>
+    <%= f.text_field :search ,placeholder: "キーワード"%>
+    <%= f.submit '検索する', name: nil %>
     <% end %>
   </div>
   <%= render 'index', posts: @posts %>
@@ -15,7 +15,7 @@
         <%= form_with model: @post do |f| %>
 
             <div class="row justify-content-center">
-            <div class="col-12 col-md-6 d-flex align-items-center"><%= f.text_field :content, class: 'form-control content',placeholder: '好きなことを投稿しよう！' %></div>
+            <div class="col-12 col-md-6 d-flex align-items-center"><%= f.text_field :content,id: 'post-form', class: 'form-control content',placeholder: '好きなことを投稿しよう！' %></div>
             <div class="col-7 col-md-4 d-flex align-items-center"><%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %></div>
             <div class="col-5 col-md-2 d-flex align-items-center"><%= f.submit  "投稿する", class: 'btn btn-success' %></div>
           </div>

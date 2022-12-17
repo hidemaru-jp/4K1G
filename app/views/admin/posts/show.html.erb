@@ -10,16 +10,13 @@
       <div class="col-9">
         <div class="card">
           <li class="list-group-item">
-          <div class="d-flex"><%= @post.user.name %>&nbsp;&nbsp;&nbsp;<p style="color: grey;"><%= time_ago_in_words(@post.created_at).upcase+'前' %></p></div>
+            <div class="d-flex"><%= @post.user.name %>&nbsp;&nbsp;&nbsp;<p style="color: grey;"><%= time_ago_in_words(@post.created_at).upcase+'前' %></p></div>
             <%= @post.content %>
             <% if @post.get_image.present? %>
               <%= image_tag @post.get_image %>
             <% end %>
           </li>
         </div>
-      </div>
-      <div class="d-flex align-items-center justify-content-center">
-        <%= link_to '削除する', post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger"%>
       </div>
     </div>
   </div>
