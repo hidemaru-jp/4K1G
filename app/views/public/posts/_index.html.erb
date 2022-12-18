@@ -15,51 +15,12 @@
                 <%= image_tag post.get_image %>
               <% end %>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item d-flex " style="align-items: center;">
               <p>
                 <%= link_to post_path(post.id) do %>
-                  <i class="fa-solid fa-reply"></i><%= post.post_comments.count %>
-                <% end %>&nbsp;&nbsp;
-
-                <% if post.favorited_by?(current_user) %>
-
-                  <!--  いいねされている時  -->
-                  <%= link_to post_favorites_path(post.id),class: "link_orange", method: :delete do %>
-                    <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id),class: "link_red", method: :delete do %>
-                    <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id),class: "link_blue", method: :delete do %>
-                    <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id),class: "link_green", method: :delete do %>
-                    <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id),class: "link_yellow", method: :delete do %>
-                    <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
-                  <% end %>&nbsp;&nbsp;
-
-                <% else %>
-
-                  <!--  いいねされていない時  -->
-                  <%= link_to post_favorites_path(post.id, reaction: 0, favorited_id: post.user.id),class: "link_black", method: :post do %>
-                    <i class="fa-solid fa-star"></i><%= post.favorites.where(reaction: 0).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id, reaction: 1, favorited_id: post.user.id),class: "link_black", method: :post do %>
-                    <i class="fa-solid fa-heart"></i><%= post.favorites.where(reaction: 1).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id, reaction: 2, favorited_id: post.user.id),class: "link_black", method: :post do %>
-                    <i class="fa-solid fa-glasses"></i><%= post.favorites.where(reaction: 2).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id, reaction: 3, favorited_id: post.user.id),class: "link_black", method: :post do %>
-                    <i class="fa-solid fa-seedling"></i><%= post.favorites.where(reaction: 3).count %>
-                  <% end %>&nbsp;&nbsp;
-                  <%= link_to post_favorites_path(post.id, reaction: 4, favorited_id: post.user.id),class: "link_black", method: :post do %>
-                    <i class="fa-solid fa-bolt"></i><%= post.favorites.where(reaction: 4).count %>
-                  <% end %>&nbsp;&nbsp;
-
-                <% end %>
+                  <div><i class="fa-solid fa-reply"></i><%= post.post_comments.count %></div>
+                <% end %>&nbsp;&nbsp;&nbsp;&nbsp;
+                <div id="favorite_buttons_<%= post.id %>"><%= render "public/favorites/favorite", post: post %></div>
                 <% if current_user.id == post.user_id %>
                   <%= link_to '削除する', post_path(post.id), method: :delete, class: "btn btn-sm btn-danger"%>
                 <% end %>
