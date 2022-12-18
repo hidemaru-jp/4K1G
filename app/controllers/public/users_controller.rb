@@ -1,6 +1,5 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:edit]
   before_action :ensure_current_user, only: [:edit,:delete]
   before_action :set_user, only: [:favorites]
 
@@ -31,8 +30,13 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(current_user.id)
+    if @user.update(user_params)
+      flash[:notice] = "プロフィールを更新しました。"
+      redirect_to user_path(current_user.id)
+    else 
+      flash[:alert] = "プロフィールを更新できませんでした。"
+      redirect_to request.referrer
+    end
   end
 
   def follows
@@ -54,6 +58,7 @@ class Public::UsersController < ApplicationController
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
     reset_session
+    flash[:notice] = "退会しました。"
     redirect_to root_path
   end
 

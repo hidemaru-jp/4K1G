@@ -17,11 +17,13 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
+      flash[:notice] = "投稿しました。"
       redirect_to posts_path
     else
       @posts = Post.page(params[:page]).per(10).reverse_order
       @post = Post.new
       @posts = @posts.where('content LIKE ?', "%#{params[:search]}%") if params[:search].present?
+      flash[:alert] = "投稿できませんでした。"
       render :index
     end
   end
@@ -29,6 +31,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
+    flash[:notice] = "投稿を削除しました。"
     redirect_to request.referrer
   end
 
