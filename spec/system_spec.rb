@@ -56,19 +56,24 @@ describe '投稿画面のテスト' do
       visit root_path
     end
     it 'ログインしてログアウトできるか' do
-      visit root_path
       click_link 'ログイン'
       fill_in 'user[email]',with: @user.email
       fill_in 'user[password]',with: @user.password
       click_button 'ログイン'
       expect(page).to have_current_path user_path(@user)
-      visit destroy_user_session_path(@user)
+    end
+    it 'ログインに失敗して元の画面に戻るか' do
+      click_link 'ログイン'
+      fill_in 'user[email]',with: ''
+      fill_in 'user[password]',with: ''
+      click_button 'ログイン'
+      expect(page).to have_current_path new_user_session_path
     end
     it'ログアウトできるか' do
-      visit root_path
       sign_in @user
       visit user_path(@user)
-      visit destroy_user_session_path(@user)
+      expect(page).to have_link"",href: destroy_user_session_path
+      find("#logout").click
       expect(page).to have_current_path root_path
     end
   end

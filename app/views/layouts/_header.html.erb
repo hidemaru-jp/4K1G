@@ -46,7 +46,7 @@
           </li>
           <!-- ログアウト用  -->
           <li class="mr-3">
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light text-center' do %>
+            <%= link_to destroy_user_session_path, method: :delete,id: 'logout',class: 'nav-link text-light text-center' do %>
               <div class="nav-btn mx-auto btn--yellow btn--yellow-circle"><i class="fa-solid fa-right-from-bracket fa-1x"></i></div>
             <% end %>
             <p class="text-center text-white mb-0">ログアウト</p>
