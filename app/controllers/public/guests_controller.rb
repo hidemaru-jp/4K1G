@@ -9,5 +9,4 @@ class Public::GuestsController < ApplicationController
     redirect_to user_path(current_user), notice: 'ゲストユーザーとしてログインしました。'
   end
 
-
 end

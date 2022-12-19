@@ -12,21 +12,16 @@
             </div>
             <div class="list-group-item ">
               <div class="col-mt-2 mx-auto">
-                <div class = "d-flex">
-                  <div>
-                    <div class="text-center"style="margin-bottom: 20px;"><%= image_tag @user.get_profile_image(100,100),class: "profile_image" %></div>
-                    <div class="d-flex">
-                      <%= link_to follows_user_path(@user) do %>
-                      <h6>フォロー<%= @following_users.count %></h6>
-                      <% end %>&nbsp;&nbsp;
-                      <%= link_to followers_user_path(@user) do %>
-                      <h6>フォロワー<%= @follower_users.count %></h6>
-                      <% end %>&nbsp;&nbsp;
-                      <h6><%= link_to "いいねした投稿", favorites_user_path %></h6>
-                    </div>
-                  </div>
+                <div class="text-center"style="margin-bottom: 20px;"><%= image_tag @user.get_profile_image(100,100),class: "profile_image" %></div>
+                <div class="d-flex">
+                  <%= link_to follows_user_path(@user) do %>
+                  <h6>フォロー<%= @following_users.count %></h6>
+                  <% end %>&nbsp;&nbsp;
+                  <%= link_to followers_user_path(@user) do %>
+                  <h6>フォロワー<%= @follower_users.count %></h6>
+                  <% end %>&nbsp;&nbsp;
+                  <h6><%= link_to "いいねした投稿", favorites_user_path %></h6>
                 </div>
-
                 <div class='list-group-item'>
                   <%= "名前："+@user.name %>
                 </div>
@@ -95,12 +90,12 @@
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
-    <div>
-      <h3 class="title">タイムライン</h3>
-    </div>
-    <%= render 'public/posts/index', posts: @posts %>
+  </div>
+  <div>
+    <h3 class="title">タイムライン</h3>
+  </div>
+  <%= render 'public/posts/index', posts: @posts %>
   </div>
 </div>

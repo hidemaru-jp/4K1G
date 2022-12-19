@@ -13,7 +13,6 @@
     <div class="card bg-light mb-5 ">
       <div class="form-list p-2">
         <%= form_with model: @post do |f| %>
-
             <div class="row justify-content-center">
             <div class="col-12 col-md-6 d-flex align-items-center"><%= f.text_field :content,id: 'post-form', class: 'form-control content',placeholder: '好きなことを投稿しよう！' %></div>
             <div class="col-7 col-md-4 d-flex align-items-center"><%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %></div>

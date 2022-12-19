@@ -1,34 +1,34 @@
 <% posts.each do |post| %>
   <div style="margin-bottom: 10px;">
-      <div class="row">
-        <div class="col-2 text-right">
-          <%= link_to user_path(post.user_id) do %>
-            <div><%= image_tag post.user.get_profile_image(70,70),class: "profile_image"%></div>
-          <% end %>
-        </div>
-        <div class="col-8">
-          <div class="card">
-            <li class="list-group-item">
-              <div class="d-flex"><%= post.user.name %>&nbsp;&nbsp;&nbsp;<p style="color: grey;"><%= time_ago_in_words(post.created_at).upcase+'前' %></p></div>
-              <%= post.content %>
-              <% if post.get_image.present? %>
-                <%= image_tag post.get_image %>
+    <div class="row">
+      <div class="col-2 text-right">
+        <%= link_to user_path(post.user_id) do %>
+          <div><%= image_tag post.user.get_profile_image(70,70),class: "profile_image"%></div>
+        <% end %>
+      </div>
+      <div class="col-8">
+        <div class="card">
+          <li class="list-group-item">
+            <div class="d-flex"><%= post.user.name %>&nbsp;&nbsp;&nbsp;<p style="color: grey;"><%= time_ago_in_words(post.created_at).upcase+'前' %></p></div>
+            <%= post.content %>
+            <% if post.get_image.present? %>
+              <%= image_tag post.get_image %>
+            <% end %>
+          </li>
+          <li class="list-group-item d-flex " style="align-items: center;">
+            <p>
+              <%= link_to post_path(post.id) do %>
+                <div><i class="fa-solid fa-reply"></i><%= post.post_comments.count %></div>
+              <% end %>&nbsp;&nbsp;&nbsp;&nbsp;
+              <div id="favorite_buttons_<%= post.id %>"><%= render "public/favorites/favorite", post: post %></div>
+              <% if current_user.id == post.user_id %>
+                <%= link_to '削除する', post_path(post.id), method: :delete, class: "btn btn-sm btn-danger"%>
               <% end %>
-            </li>
-            <li class="list-group-item d-flex " style="align-items: center;">
-              <p>
-                <%= link_to post_path(post.id) do %>
-                  <div><i class="fa-solid fa-reply"></i><%= post.post_comments.count %></div>
-                <% end %>&nbsp;&nbsp;&nbsp;&nbsp;
-                <div id="favorite_buttons_<%= post.id %>"><%= render "public/favorites/favorite", post: post %></div>
-                <% if current_user.id == post.user_id %>
-                  <%= link_to '削除する', post_path(post.id), method: :delete, class: "btn btn-sm btn-danger"%>
-                <% end %>
-              </p>
-            </li>
-          </div>
+            </p>
+          </li>
         </div>
       </div>
+    </div>
   </div>
 <% end %>
 <%= paginate posts %>

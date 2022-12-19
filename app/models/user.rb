@@ -16,8 +16,6 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
   validates :introduction, length: { maximum: 200 }
 
-
-
   #プロフィール写真を取得するための記述
   has_one_attached :profile_image
 
@@ -60,6 +58,7 @@ class User < ApplicationRecord
     end
   end
 
+  # グラフに渡すためのデータを定義
   def circle_data(user)
     cool_count = Favorite.where(favorited_id: user.id,reaction: 0).count
     cute_count = Favorite.where(favorited_id: user.id,reaction: 1).count
@@ -72,6 +71,5 @@ class User < ApplicationRecord
     [cool_count, cute_count, clever_count,lol_count,power_count]
      #以上の配列がcircle_dataを使った時の返り値
   end
-
-
+  
 end

@@ -3,7 +3,6 @@ class PostComment < ApplicationRecord
   belongs_to :post
   has_many :notifications, dependent: :destroy
   validates :comment, length: { minimum: 1, maximum: 100 }
-
   has_one_attached :image
 
   def get_image
@@ -11,5 +10,4 @@ class PostComment < ApplicationRecord
       image.variant(resize_to_limit: [100, 100]).processed
     end
   end
-
 end

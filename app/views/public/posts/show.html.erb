@@ -24,31 +24,29 @@
   </div>
   <% @post_comments.each do |post_comment| %>
     <div style="margin-bottom: 10px;">
-
-          <div class="row">
-            <div class="col-2 text-right">
-              <%= link_to user_path(post_comment.user_id) do %>
-                <div><%= image_tag post_comment.user.get_profile_image(70,70),class: "profile_image" %></div>
+      <div class="row">
+        <div class="col-2 text-right">
+          <%= link_to user_path(post_comment.user_id) do %>
+            <div><%= image_tag post_comment.user.get_profile_image(70,70),class: "profile_image" %></div>
+          <% end %>
+        </div>
+        <div class="col-9">
+          <div class="card">
+            <li class="list-group-item">
+              <div class="d-flex"><%= post_comment.user.name %>&nbsp;&nbsp;&nbsp;<p style="color: grey;"><%= time_ago_in_words(post_comment.created_at).upcase+'前' %></p></div>
+              <%= post_comment.comment %>
+              <% if post_comment.get_image.present? %>
+                <%= image_tag post_comment.get_image %>
               <% end %>
-            </div>
-            <div class="col-9">
-              <div class="card">
-                <li class="list-group-item">
-                  <div class="d-flex"><%= post_comment.user.name %>&nbsp;&nbsp;&nbsp;<p style="color: grey;"><%= time_ago_in_words(post_comment.created_at).upcase+'前' %></p></div>
-                  <%= post_comment.comment %>
-                  <% if post_comment.get_image.present? %>
-                    <%= image_tag post_comment.get_image %>
-                  <% end %>
-                </li>
-              </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center">
-              <% if current_user.id == post_comment.user_id %>
-                <%= link_to '削除する', post_post_comment_path(post_comment.post,post_comment), method: :delete, class: "btn btn-sm btn-danger"%>
-              <% end %>
-            </div>
+            </li>
           </div>
-
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+          <% if current_user.id == post_comment.user_id %>
+            <%= link_to '削除する', post_post_comment_path(post_comment.post,post_comment), method: :delete, class: "btn btn-sm btn-danger"%>
+          <% end %>
+        </div>
+      </div>
     </div>
   <% end %>
 
@@ -56,7 +54,6 @@
     <div class="card bg-light mb-5 ">
       <div class="form-list p-2">
         <%= form_with model: [@post,@post_comment] do |f| %>
-
           <div class="row justify-content-center">
           <div class="col-12 col-md-6 d-flex align-items-center"><%= f.text_field :comment, class: 'form-control content',placeholder: 'コメントしよう！' %></div>
           <div class="col-7 col-md-4 d-flex align-items-center"><%= f.file_field :image, class: "form-control-file post_image", accept: 'image/*' %></div>

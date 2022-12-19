@@ -35,6 +35,7 @@ class Public::PostsController < ApplicationController
     redirect_to request.referrer
   end
 
+  
   private
 
   def post_params

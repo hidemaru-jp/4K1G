@@ -4,7 +4,6 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :notifications,dependent: :destroy
   validates :content, length: { minimum: 1, maximum: 100 }
-
   has_one_attached :image
 
   def get_image
@@ -71,6 +70,4 @@ class Post < ApplicationRecord
     end
   end
   
-  
-
 end
