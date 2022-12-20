@@ -4,15 +4,15 @@ class Public::UsersController < ApplicationController
   before_action :set_user, only: [:favorites]
 
   def index
-    @users = User.page(params[:page]).per(10).reverse_order
-    @users = @users.where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
+    @users = User.preload(:posts,:follower,:followed).page(params[:page]).per(10).reverse_order
+    @users = @users.preload(:posts,:follower,:followed).where('name LIKE ?', "%#{params[:search]}%") if params[:search].present?
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.preload(:posts,:follower,:followed).find(params[:id])
     user_ids = @user.following_user.pluck(:id) # フォローしているユーザーのid一覧
     user_ids.push(@user.id) # 自身のidを一覧に追加する
-    @posts = Post.where(user_id: user_ids).page(params[:page]).per(10).reverse_order
+    @posts = Post.eager_load(:user).preload(:favorites,:post_comments).where(user_id: user_ids).page(params[:page]).per(10).reverse_order
     @following_users = @user.following_user
     @follower_users = @user.follower_user
     gon.Favorite_data = @user.circle_data(@user) #ここで代入したデータをJavaScriptに渡す
