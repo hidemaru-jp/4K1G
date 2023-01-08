@@ -20,9 +20,9 @@
 好きな属性の投稿内容を見たい時
 
 ## 設計書
-[ER図](https://drive.google.com/file/d/1hAMDpkxm-3i1jM8-HX0xAXEH3d_4knOZ/view?usp=sharing)
-[テーブル定義書](https://docs.google.com/spreadsheets/d/1TXMUAp4HMmk0UPBVFYXoLXbD9Y-foIktEYlzLtKUrxI/edit?usp=sharing)
-[アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1V6ppdqnPzsioEeq-KlegL8y8V70J9hlaJXhoKAdGBEM/edit?usp=sharing)
+- [ER図](https://drive.google.com/file/d/1hAMDpkxm-3i1jM8-HX0xAXEH3d_4knOZ/view?usp=sharing)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1TXMUAp4HMmk0UPBVFYXoLXbD9Y-foIktEYlzLtKUrxI/edit?usp=sharing)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1V6ppdqnPzsioEeq-KlegL8y8V70J9hlaJXhoKAdGBEM/edit?usp=sharing)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -32,4 +32,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-[いらすとや](https://www.irasutoya.com/)
+- [いらすとや](https://www.irasutoya.com/)
